@@ -1,0 +1,5 @@
+mido
+music21
+matplotlib
+pygame
+numpy
