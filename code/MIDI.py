@@ -17,7 +17,7 @@ DATASET_PATH = '/Users/jaimeuria/.cache/kagglehub/datasets/imsparsh/lakh-midi-cl
 # Evolutionary Algorithm Parameters
 POPULATION_SIZE = 100        # Number of individuals in the population
 SELECTION_SIZE = 50         # Number of top individuals to select
-GENERATIONS = 50          # Number of generations to evolve
+GENERATIONS = 30          # Number of generations to evolve
 MUTATION_RATE = 0.8         # Probability of mutation for each individual
 OUTPUT_MIDI_PATH = 'evolved_music.mid'  # Path to save the evolved MIDI file
 LOG_FILE_PATH = 'midi_load_log.txt'     # Path to save the MIDI file load log
