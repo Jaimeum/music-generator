@@ -261,11 +261,11 @@ def get_scale_pitches(root: int, scale_type: str = 'major') -> set:
 
 def mutate_phrases(note_sequence: NoteSequence, phrase_length_beats: int = 8) -> NoteSequence:
     """
-    Realiza mutaciones a frases completas aplicando transformaciones como inversión o retrogradación.
+    Realiza mutaciones a frases completas aplicando transformaciones como inversi n o retrogradaci n.
 
-    Parámetros:
+    Par metros:
         note_sequence (NoteSequence): La secuencia actual de notas.
-        phrase_length_beats (int): Número de pulsos que define una frase.
+        phrase_length_beats (int): N mero de pulsos que define una frase.
 
     Retorna:
         NoteSequence: Secuencia de notas con transformaciones aplicadas a nivel de frase.
@@ -276,9 +276,9 @@ def mutate_phrases(note_sequence: NoteSequence, phrase_length_beats: int = 8) ->
     mutated = copy.deepcopy(note_sequence)
     mutated.sort(key=lambda x: x['start'])
 
-    # Calcula la duración de cada frase en segundos
+    # Calcula la duraci n de cada frase en segundos
     phrase_duration = phrase_length_beats * SECONDS_PER_BEAT
-    # Determina el número total de frases en la secuencia
+    # Determina el n mero total de frases en la secuencia
     num_phrases = int(math.ceil(max(note['end'] for note in mutated) / phrase_duration))
 
     for phrase_idx in range(num_phrases):
@@ -289,7 +289,7 @@ def mutate_phrases(note_sequence: NoteSequence, phrase_length_beats: int = 8) ->
         ]
 
         if phrase_notes:  # Solo aplica transformaciones si hay notas en la frase
-            # Selecciona una transformación aleatoria para aplicar a la frase
+            # Selecciona una transformaci n aleatoria para aplicar a la frase
             transformation = random.choice(['invert', 'retrograde', 'transpose_up', 'transpose_down'])
 
             if transformation == 'invert':
@@ -307,17 +307,17 @@ def mutate_phrases(note_sequence: NoteSequence, phrase_length_beats: int = 8) ->
                 semitones = random.choice([2, 4, 5, 7, 9, 11])  # Intervalos de la escala
                 for note in phrase_notes:
                     note['pitch'] += semitones
-                    # Asegura que el pitch esté dentro del rango permitido
+                    # Asegura que el pitch est  dentro del rango permitido
                     note['pitch'] = max(MIN_PITCH, min(MAX_PITCH, note['pitch']))
             elif transformation == 'transpose_down':
                 # Transpone toda la frase hacia abajo por un intervalo aleatorio dentro de la escala
                 semitones = random.choice([2, 3, 5, 7, 8, 10])  # Intervalos de la escala
                 for note in phrase_notes:
                     note['pitch'] -= semitones
-                    # Asegura que el pitch esté dentro del rango permitido
+                    # Asegura que el pitch est  dentro del rango permitido
                     note['pitch'] = max(MIN_PITCH, min(MAX_PITCH, note['pitch']))
 
-    # Ordena nuevamente las notas por tiempo de inicio después de las transformaciones
+    # Ordena nuevamente las notas por tiempo de inicio despu s de las transformaciones
     mutated.sort(key=lambda x: x['start'])
     return mutated
 
@@ -530,9 +530,9 @@ def identify_motifs(note_sequence: NoteSequence, motif_length: int = 4) -> List[
     """
     Identifica motivos recurrentes dentro de una secuencia de notas.
 
-    Parámetros:
+    Par metros:
         note_sequence (NoteSequence): La secuencia actual de notas.
-        motif_length (int): Número de notas que definen un motivo.
+        motif_length (int): N mero de notas que definen un motivo.
 
     Retorna:
         List[NoteSequence]: Lista de motivos identificados como sub-secuencias de notas.
@@ -547,18 +547,17 @@ def identify_motifs(note_sequence: NoteSequence, motif_length: int = 4) -> List[
 
         # Solo procesa candidatos que no hayan sido identificados previamente
         if candidate not in motifs:
-            # Cuenta cuántas veces se repite el candidato en la secuencia
+            # Cuenta cu ntas veces se repite el candidato en la secuencia
             count = 1
             for j in range(i + motif_length, sequence_length - motif_length + 1):
                 if note_sequence[j:j + motif_length] == candidate:
                     count += 1
 
-            # Si el candidato se repite más de una vez, se considera un motivo
+            # Si el candidato se repite m s de una vez, se considera un motivo
             if count > 1:
                 motifs.append(candidate)
 
     return motifs
-
 
 def mutate_motifs(note_sequence: NoteSequence, motif_length: int = 4) -> NoteSequence:
     """
@@ -1736,3 +1735,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
