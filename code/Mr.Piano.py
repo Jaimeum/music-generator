@@ -1,4 +1,5 @@
 """
+--------------------------- Manual de Usuario --------------------------- 
 Proyecto: Generador de Música Evolutiva
 ---
 
